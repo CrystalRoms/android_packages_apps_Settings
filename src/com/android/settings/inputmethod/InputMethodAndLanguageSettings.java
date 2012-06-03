@@ -175,6 +175,7 @@ public class InputMethodAndLanguageSettings extends SettingsPreferenceFragment
         mIm = (InputManager)getActivity().getSystemService(Context.INPUT_SERVICE);
         updateInputDevices();
 
+        mStylusIconEnabled = (CheckBoxPreference) findPreference(KEY_STYLUS_ICON_ENABLED);
         if (!getResources().getBoolean(com.android.internal.R.bool.config_stylusGestures)) {
             PreferenceCategory pointerSettingsCategory = (PreferenceCategory)
                 findPreference(KEY_POINTER_SETTINGS_CATEGORY);
@@ -295,7 +296,8 @@ public class InputMethodAndLanguageSettings extends SettingsPreferenceFragment
         }
 
         if (mStylusIconEnabled != null) {
-             mStylusIconEnabled.setChecked(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.STYLUS_ICON_ENABLED, 0) == 1);
+            mStylusIconEnabled.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
+                    Settings.System.STYLUS_ICON_ENABLED, 0) == 1);
         }
 
         // Hard keyboard
@@ -353,7 +355,10 @@ public class InputMethodAndLanguageSettings extends SettingsPreferenceFragment
         if (Utils.isMonkeyRunning()) {
             return false;
         }
-        if (preference instanceof PreferenceScreen) {
+        if (preference == mStylusIconEnabled) {
+            Settings.System.putInt(getActivity().getContentResolver(),
+                Settings.System.STYLUS_ICON_ENABLED, mStylusIconEnabled.isChecked() ? 1 : 0);
+        } else if (preference instanceof PreferenceScreen) {
             if (preference.getFragment() != null) {
                 // Fragment will be handled correctly by the super class.
             } else if (KEY_CURRENT_INPUT_METHOD.equals(preference.getKey())) {
