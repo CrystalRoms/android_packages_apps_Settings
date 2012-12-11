@@ -38,6 +38,7 @@ public class LockscreenInterface extends SettingsPreferenceFragment {
     private static final String TAG = "LockscreenInterface";
 
     private static final String KEY_ENABLE_WIDGETS = "keyguard_enable_widgets";
+    private static final String KEY_LOCKSCREEN_BUTTONS = "lockscreen_buttons";
     private static final String KEY_LOCK_CLOCK = "lock_clock";
     private static final String LOCKSCREEN_WIDGETS_CATEGORY = "lockscreen_widgets_category";
 
@@ -46,6 +47,10 @@ public class LockscreenInterface extends SettingsPreferenceFragment {
     private ChooseLockSettingsHelper mChooseLockSettingsHelper;
     private DevicePolicyManager mDPM;
     private boolean mIsPrimary;
+
+    public boolean hasButtons() {
+        return !getResources().getBoolean(com.android.internal.R.bool.config_showNavigationBar);
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -73,6 +78,10 @@ public class LockscreenInterface extends SettingsPreferenceFragment {
                 }
             }
 
+            PreferenceScreen lockscreenButtons = (PreferenceScreen) findPreference(KEY_LOCKSCREEN_BUTTONS);
+            if (!hasButtons()) {
+                generalCategory.removePreference(lockscreenButtons);
+            }
         } else {
             // Secondary user is logged in, remove all primary user specific preferences
         }
