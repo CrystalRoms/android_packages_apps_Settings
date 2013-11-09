@@ -183,6 +183,7 @@ public class InputMethodAndLanguageSettings extends SettingsPreferenceFragment
                         pointerSettingsCategory, KEY_TRACKPAD_SETTINGS);
             }
         }
+
         //Stylus Icon Options=
         mStylusIconEnabled = (CheckBoxPreference) findPreference(KEY_STYLUS_ICON_ENABLED);
 
