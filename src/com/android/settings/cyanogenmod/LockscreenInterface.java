@@ -86,6 +86,10 @@ public class LockscreenInterface extends SettingsPreferenceFragment {
                 // Widgets take a lot of RAM, so disable them on low-memory devices
                 if (widgetsCategory != null) {
                     widgetsCategory.removePreference(findPreference(KEY_ENABLE_WIDGETS));
+                    if (Utils.isPhone(getActivity())) {
+                        widgetsCategory.removePreference(
+                                findPreference(Settings.System.LOCKSCREEN_MAXIMIZE_WIDGETS));
+                    }
                     mEnableKeyguardWidgets = null;
                 }
             } else {
@@ -94,8 +98,6 @@ public class LockscreenInterface extends SettingsPreferenceFragment {
                 if (disabled) {
                     mEnableKeyguardWidgets.setSummary(
                             R.string.security_enable_widgets_disabled_summary);
-                } else {
-                    mEnableKeyguardWidgets.setSummary(R.string.lockscreen_enable_widgets_summary);
                 }
                 mEnableKeyguardWidgets.setEnabled(!disabled);
             }
