@@ -474,6 +474,7 @@
         <item>4</item>
     </string-array>
 
+
     <string-array name="entries_status_bar_signal" translatable="false">
         <item>@string/status_bar_signal_style_icon</item>
         <item>@string/status_bar_signal_style_text</item>
@@ -486,6 +487,7 @@
         <item>2</item>
 	</string-array>
 	
+
     <!-- Data usage settings.  Entries for cycle length. -->
     <string-array name="data_usage_cycle_length">
         <item>Daily</item>
