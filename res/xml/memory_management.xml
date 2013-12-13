@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2012 The CyanogenMod Project
+<!--
+     Copyright (C) 2012-2013 The CyanogenMod Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -13,7 +14,6 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-
 <PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:title="@string/memory_management_title"
@@ -36,5 +36,10 @@
         android:key="pref_ksm"
         android:title="@string/pref_ksm_title"
         android:summary="@string/pref_ksm_summary" />
+
+    <CheckBoxPreference
+        android:key="pref_low_ram"
+        android:title="@string/pref_low_ram_title"
+        android:summary="@string/pref_low_ram_summary" />
 
 </PreferenceScreen>

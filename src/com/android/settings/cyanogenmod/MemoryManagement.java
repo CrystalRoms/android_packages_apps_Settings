@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012 The CyanogenMod Project
+ * Copyright (C) 2012-2013 The CyanogenMod Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,30 +34,26 @@ public class MemoryManagement extends SettingsPreferenceFragment implements
         OnPreferenceChangeListener {
 
     public static final String KSM_RUN_FILE = "/sys/kernel/mm/ksm/run";
-
     public static final String KSM_PREF = "pref_ksm";
-
     public static final String KSM_PREF_DISABLED = "0";
-
     public static final String KSM_PREF_ENABLED = "1";
 
     private static final String ZRAM_PREF = "pref_zram_size";
-
-    private static final String ZRAM_PERSIST_PROP = "persist.service.zram"; // was compcache
-
-    private static final String ZRAM_DEFAULT = SystemProperties.get("ro.zram.default"); // was compcache
+    private static final String ZRAM_PERSIST_PROP = "persist.service.zram";
+    private static final String ZRAM_DEFAULT_PROP = "ro.zram.default";
 
     private static final String PURGEABLE_ASSETS_PREF = "pref_purgeable_assets";
-
     private static final String PURGEABLE_ASSETS_PERSIST_PROP = "persist.sys.purgeable_assets";
-
     private static final String PURGEABLE_ASSETS_DEFAULT = "0";
 
+    private static final String LOW_RAM_PREF = "pref_low_ram";
+    private static final String LOW_RAM_PERSIST_PROP = "persist.config.low_ram";
+    private static final String LOW_RAM_DEFAULT_PROP = "ro.config.low_ram";
+
     private ListPreference mzRAM;
-
     private CheckBoxPreference mPurgeableAssetsPref;
-
     private CheckBoxPreference mKSMPref;
+    private CheckBoxPreference mLowRamPref;
 
     private int swapAvailable = -1;
 
@@ -72,12 +68,18 @@ public class MemoryManagement extends SettingsPreferenceFragment implements
         mzRAM = (ListPreference) prefSet.findPreference(ZRAM_PREF);
         mPurgeableAssetsPref = (CheckBoxPreference) prefSet.findPreference(PURGEABLE_ASSETS_PREF);
         mKSMPref = (CheckBoxPreference) prefSet.findPreference(KSM_PREF);
+        mLowRamPref = (CheckBoxPreference) prefSet.findPreference(LOW_RAM_PREF);
+
+        String zRamDefault = SystemProperties.get(ZRAM_DEFAULT_PROP);
+        if (zRamDefault == null) {
+            zRamDefault = "0";
+        }
 
         if (isSwapAvailable()) {
             if (SystemProperties.get(ZRAM_PERSIST_PROP) == "1") {
-                SystemProperties.set(ZRAM_PERSIST_PROP, ZRAM_DEFAULT);
+                SystemProperties.set(ZRAM_PERSIST_PROP, zRamDefault);
             }
-            mzRAM.setValue(SystemProperties.get(ZRAM_PERSIST_PROP, ZRAM_DEFAULT));
+            mzRAM.setValue(SystemProperties.get(ZRAM_PERSIST_PROP, zRamDefault));
             mzRAM.setOnPreferenceChangeListener(this);
         } else {
             prefSet.removePreference(mzRAM);
@@ -92,6 +94,14 @@ public class MemoryManagement extends SettingsPreferenceFragment implements
         String purgeableAssets = SystemProperties.get(PURGEABLE_ASSETS_PERSIST_PROP,
                 PURGEABLE_ASSETS_DEFAULT);
         mPurgeableAssetsPref.setChecked("1".equals(purgeableAssets));
+
+        String lowRamDefault = SystemProperties.get(LOW_RAM_DEFAULT_PROP);
+        if (lowRamDefault != null) {
+            String lowRam = SystemProperties.get(LOW_RAM_PERSIST_PROP, lowRamDefault);
+            mLowRamPref.setChecked("true".equals(lowRam));
+        } else {
+            prefSet.removePreference(mLowRamPref);
+        }
     }
 
     @Override
@@ -105,6 +115,11 @@ public class MemoryManagement extends SettingsPreferenceFragment implements
 
         if (preference == mKSMPref) {
             Utils.fileWriteOneLine(KSM_RUN_FILE, mKSMPref.isChecked() ? "1" : "0");
+            return true;
+        }
+
+        if (preference == mLowRamPref) {
+            SystemProperties.set(LOW_RAM_PERSIST_PROP, mLowRamPref.isChecked() ? "true" : "false");
             return true;
         }
 

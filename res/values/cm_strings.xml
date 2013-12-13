@@ -547,6 +547,9 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <!-- Purgeable Assets -->
     <string name="pref_purgeable_assets_title">Allow purging of assets</string>
     <string name="pref_purgeable_assets_summary">Purging of bitmap memory assets allows the freeing of more RAM when needed (requires reboot)</string>
+    <!-- Low Ram -->
+    <string name="pref_low_ram_title">Low RAM optimization</string>
+    <string name="pref_low_ram_summary">Decrease memory usage by disabling memory-intensive parts of the system (requires reboot)</string>
 
     <!-- Performance Settings : 16bpp Alpha -->
     <string name="pref_use_16bpp_alpha_title">16bit transparency</string>
