@@ -67,5 +67,4 @@
                 android:paddingTop="6dip"
                 android:paddingBottom="6dip" />
     </LinearLayout>
-
 </ScrollView>
