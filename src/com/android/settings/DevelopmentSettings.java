@@ -66,7 +66,6 @@ import android.view.Gravity;
 import android.view.HardwareRenderer;
 import android.view.IWindowManager;
 import android.view.View;
-import android.webkit.WebViewFactory;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -151,8 +150,6 @@ public class DevelopmentSettings extends RestrictedSettingsFragment
     private static final String APP_PROCESS_LIMIT_KEY = "app_process_limit";
 
     private static final String SHOW_ALL_ANRS_KEY = "show_all_anrs";
-	
-	private static final String WEBVIEW_CLASSIC_KEY = "classic_webview";
 
     private static final String KILL_APP_LONGPRESS_BACK = "kill_app_longpress_back";
 
@@ -222,7 +219,6 @@ public class DevelopmentSettings extends RestrictedSettingsFragment
     private ListPreference mAppProcessLimit;
 
     private CheckBoxPreference mShowAllANRs;
-	private CheckBoxPreference mClassicWebView;
     private CheckBoxPreference mKillAppLongpressBack;
 
     private ListPreference mRootAccess;
@@ -353,17 +349,6 @@ public class DevelopmentSettings extends RestrictedSettingsFragment
         mAllPrefs.add(mShowAllANRs);
         mResetCbPrefs.add(mShowAllANRs);
 
-		if (WebViewFactory.isClassicWebViewAvailable()) {
-			mClassicWebView = findAndInitCheckboxPref(WEBVIEW_CLASSIC_KEY);
-		} else {
-			Preference classicWebView = findPreference(WEBVIEW_CLASSIC_KEY);
-			PreferenceGroup debugApplicationsCategory = (PreferenceGroup)
-			findPreference(DEBUG_APPLICATIONS_CATEGORY_KEY);
-			if (debugApplicationsCategory != null) {
-				debugApplicationsCategory.removePreference(classicWebView);
-			}
-		}
-		
         mKillAppLongpressBack = findAndInitCheckboxPref(KILL_APP_LONGPRESS_BACK);
 
         Preference selectRuntime = findPreference(SELECT_RUNTIME_KEY);
@@ -577,7 +562,6 @@ public class DevelopmentSettings extends RestrictedSettingsFragment
         updateImmediatelyDestroyActivitiesOptions();
         updateAppProcessLimitOptions();
         updateShowAllANRsOptions();
-		updateClassicWebViewOptions();
         updateVerifyAppsOverUsbOptions();
         updateBugreportOptions();
         updateForceRtlOptions();
@@ -1322,19 +1306,6 @@ public class DevelopmentSettings extends RestrictedSettingsFragment
             getActivity().getContentResolver(), Settings.Secure.ANR_SHOW_BACKGROUND, 0) != 0);
     }
 
-	private void writeClassicWebViewOptions() {
-		if (mClassicWebView != null) {
-			WebViewFactory.setUseClassicWebView(mClassicWebView.isChecked());
-			pokeSystemProperties();
-		}
-	}
-
-	private void updateClassicWebViewOptions() {
-		if (mClassicWebView != null) {
-			updateCheckBox(mClassicWebView, WebViewFactory.useClassicWebView());
-		}
-	}
-		
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         if (buttonView == mEnabledSwitch) {
@@ -1480,8 +1451,6 @@ public class DevelopmentSettings extends RestrictedSettingsFragment
             writeImmediatelyDestroyActivitiesOptions();
         } else if (preference == mShowAllANRs) {
             writeShowAllANRsOptions();
-		} else if (preference == mClassicWebView) {
-			writeClassicWebViewOptions();
         } else if (preference == mForceHardwareUi) {
             writeHardwareUiOptions();
         } else if (preference == mForceMsaa) {
