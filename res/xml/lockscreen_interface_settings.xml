@@ -53,7 +53,6 @@
         <CheckBoxPreference
             android:key="keyguard_enable_widgets"
             android:title="@string/lockscreen_custom_widgets_title" />
-
     </PreferenceCategory>
 
     <PreferenceCategory
@@ -62,7 +61,7 @@
 
         <CheckBoxPreference
             android:key="keyguard_enable_widgets"
-            android:title="@string/security_enable_widgets_title" />
+            android:title="@string/lockscreen_custom_widgets_title" />
 
         <!-- Lock clock -->
         <PreferenceScreen
