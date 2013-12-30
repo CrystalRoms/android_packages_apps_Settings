@@ -505,7 +505,6 @@
         <item>2</item>
 	</string-array>
 	
-
     <!-- Data usage settings.  Entries for cycle length. -->
     <string-array name="data_usage_cycle_length">
         <item>Daily</item>
@@ -522,7 +521,8 @@
         <item>Thursday</item>
         <item>Friday</item>
         <item>Saturday</item>
-
+    </string-array>
+	
     <!-- Stylus Gestures -->
     <string-array name="gestures_entries" translatable="false">
         <item>@string/gestures_action_empty</item>
