@@ -17,7 +17,8 @@
 */
 -->
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:minHeight="?android:attr/listPreferredItemHeight"
@@ -36,27 +37,32 @@
         android:scaleType="centerInside"
         android:contentDescription="@null" />
 
-    <TextView
-        android:id="@+id/op_name"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_toEndOf="@id/op_icon"
-        android:layout_toStartOf="@+id/switchWidget"
-        android:layout_marginTop="2dip"
-        android:singleLine="true"
-        android:ellipsize="marquee"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textAlignment="viewStart" />
+        android:layout_weight="1"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/op_time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toEndOf="@id/op_icon"
-        android:layout_toStartOf="@+id/switchWidget"
-        android:layout_below="@id/op_name"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textAlignment="viewStart" />
+        <TextView
+            android:id="@+id/op_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="fill_horizontal"
+            android:layout_marginTop="2dip"
+            android:singleLine="true"
+            android:ellipsize="marquee"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textAlignment="viewStart" />
+
+        <TextView
+            android:id="@+id/op_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="fill_horizontal|top"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textAlignment="viewStart" />
+
+    </LinearLayout>
 
     <Switch android:id="@+id/switchWidget"
         android:layout_width="wrap_content"
@@ -64,8 +70,7 @@
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
         android:layout_marginStart="8dip"
-        android:padding="8dip"
         android:focusable="false"
         android:clickable="true" />
 
-</RelativeLayout>
+</LinearLayout>
