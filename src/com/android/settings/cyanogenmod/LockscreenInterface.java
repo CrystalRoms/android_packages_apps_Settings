@@ -60,7 +60,8 @@ public class LockscreenInterface extends SettingsPreferenceFragment {
         mDPM = (DevicePolicyManager)getSystemService(Context.DEVICE_POLICY_SERVICE);
 
         addPreferencesFromResource(R.xml.lockscreen_interface_settings);
-        PreferenceCategory widgetsCategory = (PreferenceCategory) findPreference(LOCKSCREEN_WIDGETS_CATEGORY);
+        PreferenceCategory generalCategory = (PreferenceCategory) findPreference(LOCKSCREEN_GENERAL_CATEGORY);
+		PreferenceCategory widgetsCategory = (PreferenceCategory) findPreference(LOCKSCREEN_WIDGETS_CATEGORY);
 
         // Only add if device has LockClock installed
         if (!isPackageInstalled("com.cyanogenmod.lockclock")) {
