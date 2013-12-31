@@ -56,8 +56,8 @@ public class PrivacyGuardPrefs extends SettingsPreferenceFragment implements
         mPrivacyGuardDefault.setOnPreferenceChangeListener(this);
 
         try {
-            mPrivacyGuardDefault.setChecked(Settings.Secure.getInt(getContentResolver(),
-                    Settings.Secure.PRIVACY_GUARD_DEFAULT) == 1);
+			mPrivacyGuardDefault.setChecked(Settings.Secure.getInt(getContentResolver(),
+					Settings.Secure.PRIVACY_GUARD_DEFAULT, 0) == 1);
         } catch (SettingNotFoundException e) {
             mPrivacyGuardDefault.setChecked(false);
         }
