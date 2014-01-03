@@ -113,14 +113,15 @@ public class LockscreenInterface extends SettingsPreferenceFragment {
         // Remove cLock settings item if not installed
         if (!isPackageInstalled("com.cyanogenmod.lockclock")) {
             widgetsCategory.removePreference(findPreference(KEY_LOCK_CLOCK));
-        }
+			}
 
         // Remove maximize widgets on tablets
         if (!Utils.isPhone(getActivity())) {
             widgetsCategory.removePreference(
                     findPreference(Settings.System.LOCKSCREEN_MAXIMIZE_WIDGETS));
-        }
-    }
+			}
+		}
+	}
 
     @Override
     public void onResume() {
