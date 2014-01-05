@@ -64,11 +64,6 @@ public class MemoryManagement extends SettingsPreferenceFragment implements
         mKSMPref = (CheckBoxPreference) prefSet.findPreference(KSM_PREF);
         mLowRamPref = (CheckBoxPreference) prefSet.findPreference(LOW_RAM_PREF);
 
-        String zRamDefault = SystemProperties.get(ZRAM_DEFAULT_PROP);
-        if (zRamDefault == null) {
-            zRamDefault = "0";
-        }
-
         if (Utils.fileExists(KSM_RUN_FILE)) {
             mKSMPref.setChecked(KSM_PREF_ENABLED.equals(Utils.fileReadOneLine(KSM_RUN_FILE)));
         } else {
