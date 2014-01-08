@@ -1,4 +1,4 @@
-package com.android.settings.cpustats;
+package com.android.settings.crystalroms.cpustats;
 
 import android.annotation.SuppressLint;
 import android.app.Fragment;
@@ -13,11 +13,11 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import com.android.settings.R;
-import com.android.settings.cpustats.Helpers;
-import com.android.settings.cpustats.CPUStateMonitor;
-import com.android.settings.cpustats.CPUStateMonitor.CPUStateMonitorException;
-import com.android.settings.cpustats.CPUStateMonitor.CpuState;
-import com.android.settings.cpustats.Constants;
+import com.android.settings.crystalroms.cpustats.Helpers;
+import com.android.settings.crystalroms.cpustats.CPUStateMonitor;
+import com.android.settings.crystalroms.cpustats.CPUStateMonitor.CPUStateMonitorException;
+import com.android.settings.crystalroms.cpustats.CPUStateMonitor.CpuState;
+import com.android.settings.crystalroms.cpustats.Constants;
 
 import java.util.ArrayList;
 import java.util.HashMap;

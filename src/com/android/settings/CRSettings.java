@@ -54,7 +54,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class CrystalRom extends SettingsPreferenceFragment implements Preference.OnPreferenceChangeListener {
+public class CRSettings extends SettingsPreferenceFragment implements Preference.OnPreferenceChangeListener {
 
     private static final String TAG = "CR_Settings";
     private static final boolean DEBUG = true;

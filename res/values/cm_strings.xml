@@ -974,7 +974,7 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <!-- Stylus gestures -->
     <string name="stylus_app_not_installed">%s is not installed</string>
 
-    <string name="crystal_title">CrystalRom</string>
+    <string name="crystal_title">Crystal Settings</string>
 
     <!-- Navigation Bar Height -->
     <string name="navigation_bar_height">Button height</string>

@@ -1,4 +1,4 @@
-package com.android.settings.cpustats;
+package com.android.settings.crystalroms.cpustats;
 
 import android.annotation.SuppressLint;
 import android.os.SystemClock;

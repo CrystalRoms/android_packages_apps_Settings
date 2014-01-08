@@ -1,4 +1,4 @@
-package com.android.settings.cpustats;
+package com.android.settings.crystalroms.cpustats;
 
 import android.app.Activity;
 import android.content.ComponentName;

@@ -2,8 +2,12 @@
 
 <PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:key="cr_settings"
+    android:key="crystal_rom"
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
+
+    <PreferenceCategory
+        android:key="cr_settings"
+        android:title="@string/crystal_title" >
 
     <PreferenceScreen
         android:key="batterybar_menu"
@@ -12,7 +16,7 @@
 
     <PreferenceScreen
         android:key="cpustat_menu"
-        android:fragment="com.android.settings.cpustats.TimeInState"
+        android:fragment="com.android.settings.crystalroms.cpustats.TimeInState"
         android:title="@string/cat_cpustates" />
 
     <CheckBoxPreference
@@ -21,14 +25,16 @@
         android:summary="@string/pref_disable_boot_animation_summary"
         android:defaultValue="false" />
 
-    <CheckBoxPreference
-        android:key="konsta_navbar"
-        android:title="@string/konsta_navbar"
-        android:defaultValue="false" />
+    </PreferenceCategory>
 
     <PreferenceCategory
         android:key="navigation_bar"
         android:title="@string/navigation_bar_category" >
+
+    <CheckBoxPreference
+        android:key="konsta_navbar"
+        android:title="@string/konsta_navbar"
+        android:defaultValue="false" />
 
         <ListPreference
             android:key="nav_buttons_height"

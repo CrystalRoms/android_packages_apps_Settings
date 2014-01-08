@@ -1,4 +1,4 @@
-package com.android.settings.cpustats;
+package com.android.settings.crystalroms.cpustats;
 
 public interface Constants {
     public static final String TAG = "CPU Time in States";
