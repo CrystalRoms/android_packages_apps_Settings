@@ -38,19 +38,19 @@ import com.android.settings.Utils;
 
 public class SystemUiSettings extends SettingsPreferenceFragment  implements
         Preference.OnPreferenceChangeListener {
-    private static final String TAG = "SystemSettings";
+    public static final String TAG = "SystemSettings";
 
-    private static final String KEY_EXPANDED_DESKTOP = "expanded_desktop";
-    private static final String KEY_EXPANDED_DESKTOP_NO_NAVBAR = "expanded_desktop_no_navbar";
-    private static final String KEY_NAVIGATION_HEIGHT = "nav_buttons_height";
-    private static final String KONSTA_NAVBAR = "konsta_navbar";
-    private static final String CATEGORY_NAVBAR = "navigation_bar";
-    private static final String KEY_SCREEN_GESTURE_SETTINGS = "touch_screen_gesture_settings";
+    public static final String KEY_EXPANDED_DESKTOP = "expanded_desktop";
+    public static final String KEY_EXPANDED_DESKTOP_NO_NAVBAR = "expanded_desktop_no_navbar";
+    public static final String KEY_NAVIGATION_HEIGHT = "nav_buttons_height";
+    public static final String KONSTA_NAVBAR = "konsta_navbar";
+    public static final String CATEGORY_NAVBAR = "navigation_bar";
+    public static final String KEY_SCREEN_GESTURE_SETTINGS = "touch_screen_gesture_settings";
 
-    private ListPreference mExpandedDesktopPref;
-    private CheckBoxPreference mExpandedDesktopNoNavbarPref;
-    private ListPreference mNavButtonsHeight;
-    private CheckBoxPreference mKonstaNavbar;
+    public ListPreference mExpandedDesktopPref;
+    public CheckBoxPreference mExpandedDesktopNoNavbarPref;
+    public ListPreference mNavButtonsHeight;
+    public CheckBoxPreference mKonstaNavbar;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -152,7 +152,7 @@ public class SystemUiSettings extends SettingsPreferenceFragment  implements
         return false;
     }
 
-    private void updateExpandedDesktop(int value) {
+    public void updateExpandedDesktop(int value) {
         ContentResolver cr = getContentResolver();
         Resources res = getResources();
         int summary = -1;

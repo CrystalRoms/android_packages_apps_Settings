@@ -70,6 +70,7 @@
     <uses-permission android:name="android.permission.MANAGE_DEVICE_ADMINS" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.CHANGE_PRIVACY_GUARD_STATE" />
+    <uses-permission android:name="android.permission.REBOOT"/>
 
     <permission
         android:name="android.permission.REQUEST_SUPERUSER"
@@ -923,6 +924,28 @@
             <!--
             <meta-data android:name="com.android.settings.TOP_LEVEL_HEADER_ID"
                 android:resource="@id/application_settings" /> -->
+        </activity>
+
+        <!-- CrystalRoms -->
+
+        <activity android:name=".crystalroms.BatteryBarMenu" />
+
+        <activity android:name="CrystalRoms"
+                android:label="@string/crystal_title">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.VOICE_LAUNCH" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".crystalroms.PartitionInfo"
+                android:label="@string/partition_info_title">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.VOICE_LAUNCH" />
+            </intent-filter>
         </activity>
 
         <activity android:name="Settings$LocationSettingsActivity"

@@ -25,6 +25,11 @@
         android:title="@string/status_bar_title" />
 
     <PreferenceScreen
+        android:key="batterybar_menu"
+        android:fragment="com.android.settings.crystalroms.BatteryBarMenu"
+        android:title="@string/cat_battery_bar" />
+
+    <PreferenceScreen
         android:key="quick_settings_panel"
         android:fragment="com.android.settings.quicksettings.QuickSettings"
         android:title="@string/quick_settings_panel_title" />
