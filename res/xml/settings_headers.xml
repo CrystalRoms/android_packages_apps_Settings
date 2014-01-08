@@ -93,14 +93,11 @@
         android:fragment="com.android.settings.cyanogenmod.SystemUISettings"
         android:title="@string/system_settings_title" />
 
-    <!-- CrystalRom -->
     <header
-        android:title="@string/crystal_title">
-        <intent
-            android:action="com.android.action.MAIN"
-            android:targetPackage="com.android.settings"
-            android:targetClass="com.android.settings.CrystalRoms" />
-    </header>
+        android:id="@+id/cr_settings"
+        android:fragment="com.android.settings.CrystalRom"
+        android:title="@string/crystal_title"
+        android:icon="@drawable/ic_action_set" />
 
     <!-- Partition info -->
     <header

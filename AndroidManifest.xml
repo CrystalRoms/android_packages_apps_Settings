@@ -930,15 +930,6 @@
 
         <activity android:name=".crystalroms.BatteryBarMenu" />
 
-        <activity android:name="CrystalRoms"
-                android:label="@string/crystal_title">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.VOICE_LAUNCH" />
-            </intent-filter>
-        </activity>
-
         <activity android:name=".crystalroms.PartitionInfo"
                 android:label="@string/partition_info_title">
             <intent-filter>

@@ -42,15 +42,11 @@ public class SystemUiSettings extends SettingsPreferenceFragment  implements
 
     private static final String KEY_EXPANDED_DESKTOP = "expanded_desktop";
     private static final String KEY_EXPANDED_DESKTOP_NO_NAVBAR = "expanded_desktop_no_navbar";
-    private static final String KEY_NAVIGATION_HEIGHT = "nav_buttons_height";
-    private static final String KONSTA_NAVBAR = "konsta_navbar";
     private static final String CATEGORY_NAVBAR = "navigation_bar";
     private static final String KEY_SCREEN_GESTURE_SETTINGS = "touch_screen_gesture_settings";
 
     private ListPreference mExpandedDesktopPref;
     private CheckBoxPreference mExpandedDesktopNoNavbarPref;
-    private ListPreference mNavButtonsHeight;
-    private CheckBoxPreference mKonstaNavbar;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -58,21 +54,6 @@ public class SystemUiSettings extends SettingsPreferenceFragment  implements
 
         addPreferencesFromResource(R.xml.system_ui_settings);
         PreferenceScreen prefScreen = getPreferenceScreen();
-
-        // Navbar height
-        mNavButtonsHeight = (ListPreference) findPreference(KEY_NAVIGATION_HEIGHT);
-        if (mNavButtonsHeight != null) {
-            mNavButtonsHeight.setOnPreferenceChangeListener(this);
-
-            int statusNavButtonsHeight = Settings.System.getInt(getActivity().getApplicationContext().getContentResolver(),
-                    Settings.System.NAV_BUTTONS_HEIGHT, 48);
-            mNavButtonsHeight.setValue(String.valueOf(statusNavButtonsHeight));
-            mNavButtonsHeight.setSummary(mNavButtonsHeight.getEntry());
-        }
-
-        mKonstaNavbar = (CheckBoxPreference) findPreference(KONSTA_NAVBAR);
-        mKonstaNavbar.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
-                Settings.System.KONSTA_NAVBAR, 0) == 1);
 
         // Expanded desktop
         mExpandedDesktopPref = (ListPreference) findPreference(KEY_EXPANDED_DESKTOP);
@@ -106,31 +87,6 @@ public class SystemUiSettings extends SettingsPreferenceFragment  implements
         }
     }
 
-    public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
-
-        if (preference == mKonstaNavbar) {
-            Settings.System.putInt(getContentResolver(), Settings.System.KONSTA_NAVBAR,
-                    mKonstaNavbar.isChecked() ? 1 : 0);
-
-            new AlertDialog.Builder(getActivity())
-                    .setTitle(getResources().getString(R.string.konsta_navbar_dialog_title))
-                    .setMessage(getResources().getString(R.string.konsta_navbar_dialog_msg))
-                    .setNegativeButton(getResources().getString(R.string.konsta_navbar_dialog_negative), null)
-                    .setCancelable(false)
-                    .setPositiveButton(getResources().getString(R.string.konsta_navbar_dialog_positive), new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            PowerManager powerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
-                            powerManager.reboot(null);
-                        }
-                    })
-                    .create()
-                    .show();
-        } else {
-            return super.onPreferenceTreeClick(preferenceScreen, preference);
-        }
-        return true;
-    }
-
     public boolean onPreferenceChange(Preference preference, Object objValue) {
         if (preference == mExpandedDesktopPref) {
             int expandedDesktopValue = Integer.valueOf((String) objValue);
@@ -139,13 +95,6 @@ public class SystemUiSettings extends SettingsPreferenceFragment  implements
         } else if (preference == mExpandedDesktopNoNavbarPref) {
             boolean value = (Boolean) objValue;
             updateExpandedDesktop(value ? 2 : 0);
-            return true;
-        } else if (preference == mNavButtonsHeight) {
-            int statusNavButtonsHeight = Integer.valueOf((String) objValue);
-            int index = mNavButtonsHeight.findIndexOfValue((String) objValue);
-            Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
-                    Settings.System.NAV_BUTTONS_HEIGHT, statusNavButtonsHeight);
-            mNavButtonsHeight.setSummary(mNavButtonsHeight.getEntries()[index]);
             return true;
         }
 
