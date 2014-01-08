@@ -27,6 +27,7 @@ import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.os.PowerManager;
 import android.os.RemoteException;
 import android.os.ServiceManager;
 import android.preference.CheckBoxPreference;
@@ -41,6 +42,7 @@ import android.view.IWindowManager;
 import android.os.ServiceManager;
 import android.os.IBinder;
 import android.os.IPowerManager;
+import android.view.WindowManagerGlobal;
 
 import android.provider.Settings;
 import android.os.SystemProperties;
@@ -59,14 +61,11 @@ public class CrystalRom extends SettingsPreferenceFragment implements Preference
 
     private static final String DISABLE_BOOTANIMATION_PREF = "pref_disable_boot_animation";
     private static final String DISABLE_BOOTANIMATION_PERSIST_PROP = "persist.sys.nobootanimation";
-    private static final String KEY_NAVIGATION_HEIGHT = "nav_buttons_height";
     private static final String KONSTA_NAVBAR = "konsta_navbar";
 
     private final Configuration mCurrentConfig = new Configuration();
 
     private CheckBoxPreference mDisableBootanimPref;
-
-    private ListPreference mNavButtonsHeight;
 
     private CheckBoxPreference mKonstaNavbar;
 
@@ -78,17 +77,6 @@ public class CrystalRom extends SettingsPreferenceFragment implements Preference
         addPreferencesFromResource(R.xml.crystal_rom);
 
         PreferenceScreen prefSet = getPreferenceScreen();
-
-        // Navbar height
-        mNavButtonsHeight = (ListPreference) findPreference(KEY_NAVIGATION_HEIGHT);
-        if (mNavButtonsHeight != null) {
-            mNavButtonsHeight.setOnPreferenceChangeListener(this);
-
-            int statusNavButtonsHeight = Settings.System.getInt(getActivity().getApplicationContext().getContentResolver(),
-                    Settings.System.NAV_BUTTONS_HEIGHT, 48);
-            mNavButtonsHeight.setValue(String.valueOf(statusNavButtonsHeight));
-            mNavButtonsHeight.setSummary(mNavButtonsHeight.getEntry());
-        }
 
         mKonstaNavbar = (CheckBoxPreference) findPreference(KONSTA_NAVBAR);
         mKonstaNavbar.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
@@ -108,9 +96,12 @@ public class CrystalRom extends SettingsPreferenceFragment implements Preference
         super.onPause();
     }
 
+    @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
-
-        if (preference == mKonstaNavbar) {
+        if (preference == mDisableBootanimPref) {
+            SystemProperties.set(DISABLE_BOOTANIMATION_PERSIST_PROP, mDisableBootanimPref.isChecked() ? "1" : "0");
+            return true;
+        } else if (preference == mKonstaNavbar) {
             Settings.System.putInt(getContentResolver(), Settings.System.KONSTA_NAVBAR,
                     mKonstaNavbar.isChecked() ? 1 : 0);
 
@@ -127,22 +118,7 @@ public class CrystalRom extends SettingsPreferenceFragment implements Preference
                     })
                     .create()
                     .show();
-        } else if (preference == mNavButtonsHeight) {
-            int statusNavButtonsHeight = Integer.valueOf((String) objValue);
-            int index = mNavButtonsHeight.findIndexOfValue((String) objValue);
-            Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
-                    Settings.System.NAV_BUTTONS_HEIGHT, statusNavButtonsHeight);
-            mNavButtonsHeight.setSummary(mNavButtonsHeight.getEntries()[index]);
-        } else {
-            return super.onPreferenceTreeClick(preferenceScreen, preference);
-        }
-        return true;
-    }
-
-    @Override
-    public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
-        if (preference == mDisableBootanimPref) {
-            SystemProperties.set(DISABLE_BOOTANIMATION_PERSIST_PROP, mDisableBootanimPref.isChecked() ? "1" : "0");
+            return true;
         }
         return super.onPreferenceTreeClick(preferenceScreen, preference);
     }
