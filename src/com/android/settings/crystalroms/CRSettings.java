@@ -14,7 +14,7 @@
 * limitations under the License.
 */
 
-package com.android.settings;
+package com.android.settings.crystalroms;
 
 import java.io.IOException;
 
@@ -62,21 +62,51 @@ public class CRSettings extends SettingsPreferenceFragment implements Preference
     private static final String DISABLE_BOOTANIMATION_PREF = "pref_disable_boot_animation";
     private static final String DISABLE_BOOTANIMATION_PERSIST_PROP = "persist.sys.nobootanimation";
     private static final String KONSTA_NAVBAR = "konsta_navbar";
+    private static final String KEY_NAVIGATION_HEIGHT = "nav_buttons_height";
+    private static final String KEY_EXPANDED_DESKTOP = "expanded_desktop";
+    private static final String KEY_EXPANDED_DESKTOP_NO_NAVBAR = "expanded_desktop_no_navbar";
+    private static final String CATEGORY_NAVBAR = "navigation_bar";
+    private static final String KEY_SCREEN_GESTURE_SETTINGS = "touch_screen_gesture_settings";
 
     private final Configuration mCurrentConfig = new Configuration();
 
     private CheckBoxPreference mDisableBootanimPref;
-
     private CheckBoxPreference mKonstaNavbar;
+    private ListPreference mNavButtonsHeight;
+    private ListPreference mExpandedDesktopPref;
+    private CheckBoxPreference mExpandedDesktopNoNavbarPref;
 
     private Context mContext;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        addPreferencesFromResource(R.xml.crystal_rom);
 
+        addPreferencesFromResource(R.xml.crystal_rom);
         PreferenceScreen prefSet = getPreferenceScreen();
+
+        // Expanded desktop
+        mExpandedDesktopPref = (ListPreference) findPreference(KEY_EXPANDED_DESKTOP);
+        mExpandedDesktopNoNavbarPref =
+                (CheckBoxPreference) findPreference(KEY_EXPANDED_DESKTOP_NO_NAVBAR);
+
+        Utils.updatePreferenceToSpecificActivityFromMetaDataOrRemove(getActivity(),
+                getPreferenceScreen(), KEY_SCREEN_GESTURE_SETTINGS);
+
+        int expandedDesktopValue = Settings.System.getInt(getContentResolver(),
+                Settings.System.EXPANDED_DESKTOP_STYLE, 0);
+
+        try {
+            boolean hasNavBar = WindowManagerGlobal.getWindowManagerService().hasNavigationBar();
+
+            if (hasNavBar) {
+                mExpandedDesktopPref.setOnPreferenceChangeListener(this);
+                mExpandedDesktopPref.setValue(String.valueOf(expandedDesktopValue));
+                updateExpandedDesktop(expandedDesktopValue);
+            }
+        } catch (RemoteException e) {
+            Log.e(TAG, "Error getting navigation bar status");
+        }
 
         mKonstaNavbar = (CheckBoxPreference) findPreference(KONSTA_NAVBAR);
         mKonstaNavbar.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
@@ -84,16 +114,38 @@ public class CRSettings extends SettingsPreferenceFragment implements Preference
 
         mDisableBootanimPref = (CheckBoxPreference) prefSet.findPreference(DISABLE_BOOTANIMATION_PREF);
         mDisableBootanimPref.setChecked("1".equals(SystemProperties.get(DISABLE_BOOTANIMATION_PERSIST_PROP, "0")));
+
+        // Navbar height
+        mNavButtonsHeight = (ListPreference) findPreference(KEY_NAVIGATION_HEIGHT);
+        if (mNavButtonsHeight != null) {
+            mNavButtonsHeight.setOnPreferenceChangeListener(this);
+
+            int statusNavButtonsHeight = Settings.System.getInt(getActivity().getApplicationContext().getContentResolver(),
+                    Settings.System.NAV_BUTTONS_HEIGHT, 48);
+            mNavButtonsHeight.setValue(String.valueOf(statusNavButtonsHeight));
+            mNavButtonsHeight.setSummary(mNavButtonsHeight.getEntry());
+        }
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-    }
+    public boolean onPreferenceChange(Preference preference, Object objValue) {
+        if (preference == mExpandedDesktopPref) {
+            int expandedDesktopValue = Integer.valueOf((String) objValue);
+            updateExpandedDesktop(expandedDesktopValue);
+            return true;
+        } else if (preference == mExpandedDesktopNoNavbarPref) {
+            boolean value = (Boolean) objValue;
+            updateExpandedDesktop(value ? 2 : 0);
+            return true;
+        } else if (preference == mNavButtonsHeight) {
+            int statusNavButtonsHeight = Integer.valueOf((String) objValue);
+            int index = mNavButtonsHeight.findIndexOfValue((String) objValue);
+            Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
+                    Settings.System.NAV_BUTTONS_HEIGHT, statusNavButtonsHeight);
+            mNavButtonsHeight.setSummary(mNavButtonsHeight.getEntries()[index]);
+            return true;
+        }
 
-    @Override
-    public void onPause() {
-        super.onPause();
+        return false;
     }
 
     @Override
@@ -123,8 +175,28 @@ public class CRSettings extends SettingsPreferenceFragment implements Preference
         return super.onPreferenceTreeClick(preferenceScreen, preference);
     }
 
-    @Override
-    public boolean onPreferenceChange(Preference preference, Object newValue) {
-        return false;
+    private void updateExpandedDesktop(int value) {
+        ContentResolver cr = getContentResolver();
+        Resources res = getResources();
+        int summary = -1;
+
+        Settings.System.putInt(cr, Settings.System.EXPANDED_DESKTOP_STYLE, value);
+
+        if (value == 0) {
+            // Expanded desktop deactivated
+            Settings.System.putInt(cr, Settings.System.POWER_MENU_EXPANDED_DESKTOP_ENABLED, 0);
+            Settings.System.putInt(cr, Settings.System.EXPANDED_DESKTOP_STATE, 0);
+            summary = R.string.expanded_desktop_disabled;
+        } else if (value == 1) {
+            Settings.System.putInt(cr, Settings.System.POWER_MENU_EXPANDED_DESKTOP_ENABLED, 1);
+            summary = R.string.expanded_desktop_status_bar;
+        } else if (value == 2) {
+            Settings.System.putInt(cr, Settings.System.POWER_MENU_EXPANDED_DESKTOP_ENABLED, 1);
+            summary = R.string.expanded_desktop_no_status_bar;
+        }
+
+        if (mExpandedDesktopPref != null && summary != -1) {
+            mExpandedDesktopPref.setSummary(res.getString(summary));
+        }
     }
 }
