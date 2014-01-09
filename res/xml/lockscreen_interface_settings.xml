@@ -45,29 +45,16 @@
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:title="@string/title_general"
-        android:key="lockscreen_general_category" >
-
-        <PreferenceScreen
-            android:key="screen_security"
-            android:fragment="com.android.settings.SecuritySettings"
-            android:title="@string/screen_security_category"
-            android:summary="@string/screen_security_summary">
-            <extra android:name="cm_security" android:value="true" />
-        </PreferenceScreen>
-
-        <CheckBoxPreference
-            android:key="keyguard_enable_widgets"
-            android:title="@string/lockscreen_custom_widgets_title" />
-    </PreferenceCategory>
-
-    <PreferenceCategory
         android:title="@string/lockscreen_widgets_category_title"
         android:key="lockscreen_widgets_category" >
 
         <CheckBoxPreference
             android:key="keyguard_enable_widgets"
             android:title="@string/lockscreen_custom_widgets_title" />
+
+        <CheckBoxPreference
+                android:key="keyguard_enable_camera"
+                android:title="@string/lockscreen_enable_camera_title" />
 
         <!-- Lock clock -->
         <PreferenceScreen
@@ -83,6 +70,6 @@
             android:key="lockscreen_maximize_widgets"
             android:summary="@string/lockscreen_maximize_widgets_summary"
             android:title="@string/lockscreen_maximize_widgets_title" />
-
     </PreferenceCategory>
+
 </PreferenceScreen>
