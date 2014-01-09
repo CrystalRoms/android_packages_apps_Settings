@@ -14,7 +14,7 @@
 * limitations under the License.
 */
 
-package com.android.settings.crystalroms;
+package com.android.settings;
 
 import java.io.IOException;
 
