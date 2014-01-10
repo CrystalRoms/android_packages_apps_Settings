@@ -1574,7 +1574,7 @@
         <!-- Special picker for keyguard widgets -->
         <activity android:name="KeyguardAppWidgetPickActivity"
                 android:label="@string/widget_picker_title"
-                android:theme="@android:style/Theme.Holo.Wallpaper.NoTitleBar"
+                android:theme="@style/Theme.KeyguardWidgetPicker"
                 android:permission="android.permission.BIND_KEYGUARD_APPWIDGET"
                 android:finishOnCloseSystemDialogs="true">
             <intent-filter>

@@ -71,4 +71,9 @@
     <style name="Theme.DialogWhenLarge" parent="@android:style/Theme.Holo.DialogWhenLarge">
         <item name="android:actionBarStyle">@android:style/Widget.Holo.ActionBar.Solid</item>
     </style>
+
+    <style name="Theme.KeyguardWidgetPicker" parent="@android:style/Theme.Holo.Wallpaper.NoTitleBar">
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
 </resources>
