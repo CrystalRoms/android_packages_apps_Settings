@@ -79,6 +79,32 @@
         <item>mute</item>
     </string-array>
 
+    <string-array name="lockscreen_delay_entries" translatable="false">
+        <item>@string/slide_lock_delay_none</item>
+        <item>@string/slide_lock_delay_1s</item>
+        <item>@string/slide_lock_delay_5s</item>
+        <item>@string/slide_lock_delay_10s</item>
+        <item>@string/slide_lock_delay_15s</item>
+        <item>@string/slide_lock_delay_30s</item>
+        <item>@string/slide_lock_delay_1m</item>
+        <item>@string/slide_lock_delay_5m</item>
+        <item>@string/slide_lock_delay_10m</item>
+        <item>@string/slide_lock_delay_30m</item>
+    </string-array>
+
+    <string-array name="lockscreen_delay_values" translatable="false">
+        <item>0</item>
+        <item>1000</item>
+        <item>5000</item>
+        <item>10000</item>
+        <item>15000</item>
+        <item>30000</item>
+        <item>60000</item>
+        <item>300000</item>
+        <item>600000</item>
+        <item>1800000</item>
+    </string-array>
+
     <string-array name="lockscreen_icon_picker_labels" translatable="false">
         <item>@string/icon_picker_alarm</item>
         <item>@string/icon_picker_browser</item>
@@ -198,6 +224,36 @@
         <item>0</item>
         <item>1</item>
         <item>2</item>
+    </string-array>
+
+    <!-- Volume Overlay options. -->
+    <string-array name="volume_overlay_entries" translatable="false">
+        <item>@string/volume_overlay_single</item>
+        <item>@string/volume_overlay_expandable</item>
+        <item>@string/volume_overlay_expanded</item>
+        <item>@string/volume_overlay_none</item>
+    </string-array>
+
+    <!-- Values for Volume Overlay. Do not translate. -->
+    <string-array name="volume_overlay_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
+    <!-- Ring mode options. -->
+    <string-array name="ring_mode_entries" translatable="false">
+        <item>@string/ring_mode_normal</item>
+        <item>@string/ring_mode_vibrate</item>
+        <item>@string/ring_mode_mute</item>
+    </string-array>
+
+    <!-- Values for Ring mode. Do not translate. -->
+    <string-array name="ring_mode_values" translatable="false">
+        <item>normal</item>
+        <item>vibrate</item>
+        <item>mute</item>
     </string-array>
 
     <!-- Values for the notification light pulse spinners -->
@@ -360,21 +416,6 @@
         <item>3</item>
     </string-array>
 
-    <!-- Performance settings -->
-    <string-array name="pref_zram_size_entries">
-        <item>Disabled</item>
-        <item>10%</item>
-        <item>18% (default)</item>
-        <item>26%</item>
-    </string-array>
-
-    <string-array name="pref_zram_size_values" translatable="false">
-        <item>0</item>
-        <item>10</item>
-        <item>18</item>
-        <item>26</item>
-    </string-array>
-
     <!--- Sms security limit -->
     <string-array name="sms_security_check_limit_entries" translatable="false">
         <item>@string/sms_security_check_limit_default</item>
@@ -447,5 +488,36 @@
         <item>5</item>
         <item>2</item>
         <item>4</item>
+    </string-array>
+
+    <string-array name="entries_status_bar_signal" translatable="false">
+        <item>@string/status_bar_signal_style_icon</item>
+        <item>@string/status_bar_signal_style_text</item>
+        <item>@string/status_bar_style_hidden</item>
+    </string-array>
+
+    <string-array name="values_status_bar_signal" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+    <!-- Stylus Gestures -->
+    <string-array name="gestures_entries" translatable="false">
+        <item>@string/gestures_action_empty</item>
+        <item>@string/gestures_action_home</item>
+        <item>@string/gestures_action_back</item>
+        <item>@string/gestures_action_menu</item>
+        <item>@string/gestures_action_search</item>
+        <item>@string/gestures_action_recent</item>
+    </string-array>
+
+    <string-array name="gestures_values" translatable="false">
+        <item>1000</item>
+        <item>1001</item>
+        <item>1002</item>
+        <item>1003</item>
+        <item>1004</item>
+        <item>1005</item>
     </string-array>
 </resources>
