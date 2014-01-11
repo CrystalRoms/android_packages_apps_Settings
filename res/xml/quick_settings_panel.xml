@@ -39,6 +39,13 @@
             android:defaultValue="true"
             android:summary="@string/summary_qs_show_text" />
 
+		<com.android.settings.cyanogenmod.SystemSettingCheckBoxPreference
+            android:key="qs_hide_text"
+            android:title="@string/title_qs_hide_text"
+            android:defaultValue="false"
+            android:summary="@string/summary_qs_hide_text" />
+
+
     </PreferenceCategory>
 
     <PreferenceCategory

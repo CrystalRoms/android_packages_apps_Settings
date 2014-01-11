@@ -217,6 +217,12 @@
     <string name="wake_when_plugged_or_unplugged_title">Wake on plug</string>
     <string name="wake_when_plugged_or_unplugged_summary">Turn the screen on when connecting or disconnecting the charger</string>
 
+    <!-- Lights settings screen, screen animation options -->
+    <string name="screen_animation_off_title">Screen-off animation</string>
+    <string name="screen_animation_style_title">Animation style</string>
+    <string name="screen_animation_style_electronbeam">Electron beam</string>
+    <string name="screen_animation_style_fade">Fade out</string>
+
     <!-- Notification light dialogs -->
     <string name="edit_light_settings">Edit light settings</string>
     <string name="pulse_speed_title">Pulse length and speed</string>
@@ -313,6 +319,8 @@
     <string name="tile_choose_title">Choose a tile</string>
     <string name="title_qs_show_text">Show text in tile</string>
     <string name="summary_qs_show_text">Will make icon bigger</string>
+    <string name="title_qs_hide_text">Hide text in tile</string>
+    <string name="summary_qs_hide_text">Will allow for more icons per row</string>
 
     <string name="title_tile_airplane">Airplane mode</string>
     <string name="title_tile_battery">Battery stats</string>
@@ -883,6 +891,9 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="backlight_summary_enabled_with_timeout">Enabled for <xliff:g id="timeout">%s</xliff:g></string>
     <string name="backlight_summary_enabled">Enabled</string>
 
+    <!-- Title for the accessibility preference to home button to answers a call. [CHAR LIMIT=35] -->
+    <string name="accessibility_home_button_answers_call_prerefence_title">Home button answers call</string>
+
     <!-- Delete apn confirmation dialog message -->
     <string name="confirm_delete_apn">The APN will be deleted.</string>
 
@@ -950,6 +961,8 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="stylus_icon_enabled_title">Show icon when using stylus</string>
     <string name="stylus_icon_enabled_summary">Show the pointer icon when hovering or drawing with the stylus</string>
 
+	<string name="edge_gesture_service">Use Edge gesutre service</string>
+	
     <!-- Stylus Gestures -->
     <string name="gestures_settings_title">Stylus gestures</string>
     <string name="category_spen_title">Stylus gestures</string>
@@ -963,7 +976,7 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="gestures_down_spen_title_head">Down swipe</string>
     <string name="gestures_long_spen_title_head">Long press</string>
     <string name="gestures_double_spen_title_head">Double tap</string>
-
+	
     <!-- Gestures Options -->
     <string name="gestures_action_empty">No action</string>
     <string name="gestures_action_home">Home</string>
@@ -1040,4 +1053,5 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <!-- Performance : Disable bootanimation -->
     <string name="pref_disable_boot_animation_title">Disable boot animation</string>
     <string name="pref_disable_boot_animation_summary">Don\'t show boot animation for faster boot</string>
+
 </resources>
