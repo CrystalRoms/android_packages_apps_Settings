@@ -51,10 +51,6 @@ public class LockscreenInterface extends SettingsPreferenceFragment {
     private LockPatternUtils mLockUtils;
     private DevicePolicyManager mDPM;
 
-    public boolean hasButtons() {
-        return !getResources().getBoolean(com.android.internal.R.bool.config_showNavigationBar);
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
