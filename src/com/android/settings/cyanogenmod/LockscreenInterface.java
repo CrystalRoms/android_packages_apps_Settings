@@ -66,7 +66,6 @@ public class LockscreenInterface extends SettingsPreferenceFragment {
 
 
         addPreferencesFromResource(R.xml.lockscreen_interface_settings);
-        PreferenceCategory generalCategory = (PreferenceCategory) findPreference(LOCKSCREEN_GENERAL_CATEGORY);
         // Find categories
         PreferenceCategory generalCategory = (PreferenceCategory)
                 findPreference(LOCKSCREEN_GENERAL_CATEGORY);
