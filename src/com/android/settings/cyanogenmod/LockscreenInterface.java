@@ -81,7 +81,8 @@ public class LockscreenInterface extends SettingsPreferenceFragment implements
         }
 
         // Remove lockscreen button actions if device doesn't have hardware keys
-        if (!hasButtons()) {
+        // and doesn't have a hardware camera key
+        if (!hasButtons() && !LockscreenButtons.hasCameraKey) {
             generalCategory.removePreference(findPreference(KEY_LOCKSCREEN_BUTTONS));
         }
 
