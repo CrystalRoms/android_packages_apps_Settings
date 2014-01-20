@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.settings.cyanogenmod;
+package com.android.settings.crystalroms;
 
 import android.app.AlertDialog;
 import android.content.ContentResolver;

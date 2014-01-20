@@ -680,8 +680,8 @@ dwa nowe, odpowiadające kolejnym punktom kontrolnym. \'Usuń\' kasuje wybrany p
     <string name="konsta_navbar">Pasek nawigacji</string>
     <string name="konsta_navbar_dialog_title">zalecany reboot</string>
     <string name="konsta_navbar_dialog_msg">Aby włączyć/wyłączyć pasek nawigacji musisz zresetować urządzenie</string>
-    <string name="konsta_navbar_dialog_negative">Zresetuj teraz</string>
-    <string name="konsta_navbar_dialog_positive">Zresetuj potem</string>
+    <string name="konsta_navbar_dialog_negative">Zresetuj potem</string>
+    <string name="konsta_navbar_dialog_positive">Zresetuj teraz</string>
 
     <!-- Partition Info -->
     <string name="partition_info_title">Informacje o partycjach</string>
@@ -757,6 +757,17 @@ dwa nowe, odpowiadające kolejnym punktom kontrolnym. \'Usuń\' kasuje wybrany p
     <string name="clock_date_format_custom">Niestandardoy format javy</string>
     <string name="status_bar_clock_style_reset_message">Zresetuj kolor zegara</string>
     <string name="color_default">Orginalny kolor</string>
+
+    <!-- CPU Time in States -->
+    <string name="cat_cpustates">Użycie stanów procesora</string>
+    <string name="mt_refresh">Odśwież</string>
+    <string name="mt_reset">Reset</string>
+    <string name="mt_restore">Przywróć</string>
+    <string name="time_in_state">UŻYCIE STANÓW W CZASIE</string>
+    <string name="unused_cpu_states">NIEUŻYWANE STANY CPU</string>
+    <string name="total_state_time">CAŁY CZAS UŻYWANIA CPU</string>
+    <string name="no_states_file_found">Brak pliku stanów, skontaktuj się z developerem</string>
+    <string name="deep_sleep">"Uśpienie"</string> 
 
     <!-- General strings -->
     <string name="ok">OK</string>
