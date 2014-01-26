@@ -1113,4 +1113,7 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="style_title">Style</string>
     <string name="other_settings">Other Settings</string>
 
+    <!-- Launcher settings  -->
+    <string name="launcher_settings_title">Launcher</string>
+
 </resources>
