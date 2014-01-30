@@ -72,23 +72,22 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
     private static final String KEY_NOTIFICATION_PULSE = "notification_pulse";
     private static final String KEY_BATTERY_LIGHT = "battery_light";
     private static final String KEY_WAKE_WHEN_PLUGGED_OR_UNPLUGGED = "wake_when_plugged_or_unplugged";
-
     private static final String KEY_SCREEN_ANIMATION_STYLE = "screen_animation_style";
-	private static final String KEY_ANIMATION_OPTIONS = "category_animation_options";
+    private static final String KEY_ANIMATION_OPTIONS = "category_animation_options";
     private static final String KEY_POWER_CRT_MODE = "system_power_crt_mode";
-
     private static final String KEY_SCREEN_ANIMATION_OFF = "screen_off_animation";
+    private static final String KEY_SCREEN_ANIMATION_STYLE = "screen_animation_style";
 
     private static final int DLG_GLOBAL_CHANGE_WARNING = 1;
 
     private CheckBoxPreference mAccelerometer;
     private FontDialogPreference mFontSizePref;
     private CheckBoxPreference mWakeWhenPluggedOrUnplugged;
-
     private ListPreference mScreenAnimationStylePreference;
-	private ListPreference mCrtMode;
+    private ListPreference mCrtMode;
 	
     private CheckBoxPreference mScreenOffAnimation;
+    private ListPreference mScreenAnimationStylePreference;
 
     private PreferenceScreen mNotificationPulse;
     private PreferenceScreen mBatteryPulse;
@@ -171,7 +170,7 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
                 com.android.internal.R.bool.config_screenOffAnimation);
         boolean requiresFadeAnimation = res.getBoolean(
                 com.android.internal.R.bool.config_animateScreenLights);
-
+        mScreenOffAnimation = (CheckBoxPreference) findPreference(KEY_SCREEN_ANIMATION_OFF);
         mScreenAnimationStylePreference =
                 (ListPreference) findPreference(KEY_SCREEN_ANIMATION_STYLE);
 
@@ -187,7 +186,6 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
                 mScreenAnimationStylePreference.setValue(String.valueOf(1));
             }
         } else {
-
             getPreferenceScreen().removePreference(
                     findPreference(Settings.System.SCREEN_OFF_ANIMATION));
             getPreferenceScreen().removePreference(mScreenAnimationStylePreference);
@@ -209,6 +207,11 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
         } else if (animationOptions != null) {
         }
 		
+            mScreenOffAnimation.setChecked(false);
+            getPreferenceScreen().removePreference(mScreenOffAnimation);
+            getPreferenceScreen().removePreference(mScreenAnimationStylePreference);
+        }
+
         boolean hasNotificationLed = res.getBoolean(
                 com.android.internal.R.bool.config_intrusiveNotificationLed);
         boolean hasBatteryLed = res.getBoolean(

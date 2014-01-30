@@ -61,10 +61,13 @@ public class CRSettings extends SettingsPreferenceFragment implements Preference
 
     private static final String DISABLE_BOOTANIMATION_PREF = "pref_disable_boot_animation";
     private static final String DISABLE_BOOTANIMATION_PERSIST_PROP = "persist.sys.nobootanimation";
+    private static final String FORCE_HIGHEND_GFX_PREF = "pref_force_highend_gfx";
+    private static final String FORCE_HIGHEND_GFX_PERSIST_PROP = "persist.sys.force_highendgfx";
 
     private final Configuration mCurrentConfig = new Configuration();
 
     private CheckBoxPreference mDisableBootanimPref;
+    private CheckBoxPreference mForceHighEndGfx;
 
     private Context mContext;
 
@@ -74,6 +77,14 @@ public class CRSettings extends SettingsPreferenceFragment implements Preference
         addPreferencesFromResource(R.xml.crystal_rom);
 
         PreferenceScreen prefSet = getPreferenceScreen();
+
+        if (ActivityManager.isLowRamDeviceStatic()) {
+            mForceHighEndGfx = (CheckBoxPreference) prefSet.findPreference(FORCE_HIGHEND_GFX_PREF);
+            String forceHighendGfx = SystemProperties.get(FORCE_HIGHEND_GFX_PERSIST_PROP, "false");
+            mForceHighEndGfx.setChecked("true".equals(forceHighendGfx));
+        } else {
+            prefSet.removePreference(findPreference(FORCE_HIGHEND_GFX_PREF));
+        }
 
         mDisableBootanimPref = (CheckBoxPreference) prefSet.findPreference(DISABLE_BOOTANIMATION_PREF);
         mDisableBootanimPref.setChecked("1".equals(SystemProperties.get(DISABLE_BOOTANIMATION_PERSIST_PROP, "0")));
@@ -93,6 +104,9 @@ public class CRSettings extends SettingsPreferenceFragment implements Preference
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
         if (preference == mDisableBootanimPref) {
             SystemProperties.set(DISABLE_BOOTANIMATION_PERSIST_PROP, mDisableBootanimPref.isChecked() ? "1" : "0");
+        } else if (preference == mForceHighEndGfx) {
+            SystemProperties.set(FORCE_HIGHEND_GFX_PERSIST_PROP,
+                    mForceHighEndGfx.isChecked() ? "true" : "false");
         }
         return super.onPreferenceTreeClick(preferenceScreen, preference);
     }

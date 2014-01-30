@@ -24,16 +24,21 @@
         android:fragment="com.android.settings.crystalroms.OtherSettings"
         android:title="@string/other_settings" />
 
-        <PreferenceScreen
-            android:fragment="com.android.settings.crystalroms.StatusBarClockStyle"
-            android:key="clock_style_pref"
-            android:title="@string/status_bar_clock" />
+    <PreferenceScreen
+        android:fragment="com.android.settings.crystalroms.StatusBarClockStyle"
+        android:key="clock_style_pref"
+        android:title="@string/status_bar_clock" />
 
     <CheckBoxPreference
         android:key="pref_disable_boot_animation"
         android:title="@string/pref_disable_boot_animation_title"
         android:summary="@string/pref_disable_boot_animation_summary"
         android:defaultValue="false" />
+
+    <CheckBoxPreference
+        android:key="pref_force_highend_gfx"
+        android:title="@string/pref_force_highend_gfx_title"
+        android:summary="@string/pref_force_highend_gfx_summary" />
 
     </PreferenceCategory>
 

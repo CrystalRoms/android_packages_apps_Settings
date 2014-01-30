@@ -95,9 +95,9 @@
             android:entryValues="@array/screen_animation_style_values"
             android:dependency="screen_off_animation" />
 
-		<PreferenceCategory
-        android:key="category_animation_options"
-        android:title="@string/display_category_animation_options_title" >
+	<PreferenceCategory
+            android:key="category_animation_options"
+            android:title="@string/display_category_animation_options_title" >
 
        <ListPreference
             android:key="system_power_crt_mode"

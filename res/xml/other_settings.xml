@@ -9,8 +9,6 @@
         android:key="other_settings"
         android:title="@string/crystal_title" >
 
-
-
     <ListPreference
             android:key="expanded_desktop"
             android:title="@string/power_menu_expanded_desktop"

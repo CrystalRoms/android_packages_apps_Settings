@@ -32,7 +32,6 @@ public class MemoryManagement extends SettingsPreferenceFragment {
 
     public static final String KSM_RUN_FILE = "/sys/kernel/mm/ksm/run";
     public static final String KSM_PREF = "pref_ksm";
-
     public static final String KSM_PREF_DISABLED = "0";
     public static final String KSM_PREF_ENABLED = "1";
 
@@ -43,6 +42,9 @@ public class MemoryManagement extends SettingsPreferenceFragment {
     private static final String LOW_RAM_PREF = "pref_low_ram";
     private static final String LOW_RAM_PERSIST_PROP = "persist.config.low_ram";
     private static final String LOW_RAM_DEFAULT_PROP = "ro.config.low_ram";
+
+    private static final String PURGEABLE_ASSETS_PREF = "pref_purgeable_assets";
+    private static final String PURGEABLE_ASSETS_PERSIST_PROP = "persist.sys.purgeable_assets";
 
     private CheckBoxPreference mPurgeableAssetsPref;
     private CheckBoxPreference mKSMPref;
@@ -100,7 +102,6 @@ public class MemoryManagement extends SettingsPreferenceFragment {
     }
 
     public boolean onPreferenceChange(Preference preference, Object newValue) {
-
         return false;
     }
 }

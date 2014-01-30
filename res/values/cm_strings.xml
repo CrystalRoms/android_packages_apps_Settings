@@ -223,7 +223,6 @@
     <string name="screen_animation_style_electronbeam">Electron beam</string>
     <string name="screen_animation_style_fade">Fade out</string>
 
-
 	<!-- Display : Animation options -->
     <string name="display_category_animation_options_title">Animation options</string>
     <string name="system_power_crt_mode_title">CRT animation mode</string>
@@ -322,10 +321,8 @@
     <string name="tile_picker_title">Tiles and layout</string>
     <string name="tile_picker_summary">View, select or change the layout of the displayed tiles</string>
     <string name="tile_choose_title">Choose a tile</string>
-
     <string name="title_qs_show_text">Show text in tile</string>
     <string name="summary_qs_show_text">Will make icon bigger</string>
-
     <string name="title_qs_hide_text">Hide text in tile</string>
     <string name="summary_qs_hide_text">Will allow for more icons per row</string>
 
@@ -592,10 +589,6 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <!-- Performance Settings : 16bpp Alpha -->
     <string name="pref_use_16bpp_alpha_title">16bit transparency</string>
     <string name="pref_use_16bpp_alpha_summary">Better graphics performance, but lower quality and may cause visual artifacts (requires reboot)</string>
-
-    <!-- Performance : Force high-end graphics -->
-    <string name="pref_force_highend_gfx_title">Force high-end graphics</string>
-    <string name="pref_force_highend_gfx_summary">Enables high-end visual effects such as transparent status/navigation bar (requires reboot)</string>
 
     <!-- Kill app long-press back -->
     <string name="kill_app_longpress_back">Kill app back button</string>
@@ -1018,126 +1011,6 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <!-- Stylus gestures -->
     <string name="stylus_app_not_installed">%s is not installed</string>
 
-
-    <string name="crystal_title">Crystal Settings</string>
-
-    <!-- Navigation Bar Height -->
-    <string name="navigation_bar_height">Button height</string>
-    <string name="navigation_bar_height_48">48dp (default)</string>
-    <string name="navigation_bar_height_44">44dp</string>
-    <string name="navigation_bar_height_40">40dp</string>
-    <string name="navigation_bar_height_36">36dp</string>
-    <string name="navigation_bar_height_32">32dp</string>
-    <string name="navigation_bar_height_28">28dp</string>
-    <string name="navigation_bar_height_24">24dp</string>
-
-    <!-- Navbar -->
-    <string name="konsta_navbar">Navigation bar</string>
-    <string name="konsta_navbar_dialog_title">Reboot required</string>
-    <string name="konsta_navbar_dialog_msg">Please reboot to enable/disable the navigation bar</string>
-    <string name="konsta_navbar_dialog_negative">Reboot later</string>
-    <string name="konsta_navbar_dialog_positive">Reboot now</string>
-
-    <!-- Partition Info -->
-    <string name="partition_info_title">Partition info</string>
-    <string name="partition_info_system">/system</string>
-    <string name="partition_info_data">/data</string>
-    <string name="partition_info_cache">/cache</string>
-    <string name="partition_info_sdcard">/sdcard (FAT)</string>
-    <string name="partition_info_sdext">/sd-ext (EXT)</string>
-    <string name="partition_info_used_of">/</string>
-    <string name="partition_info_signs">Signs</string>
-    <string name="partition_info_signs_summary">U -> Used | F -> Free | T -> Total</string>
-
-    <!-- CPU Time in States -->
-    <string name="cat_cpustates">CPU Time in States</string>
-    <string name="mt_refresh">Refresh</string>
-    <string name="mt_reset">Reset</string>
-    <string name="mt_restore">Restore</string>
-    <string name="time_in_state">TIME IN STATE</string>
-    <string name="unused_cpu_states">UNUSED CPU STATES</string>
-    <string name="total_state_time">TOTAL STATE TIME</string>
-    <string name="no_states_file_found">No states file found. Are you sure your phone is compatible?\n\nIf you are running a custom ROM or kernel, try contacting its developer to inform him that the states file is not readable.</string>
-    <string name="deep_sleep">"Deep Sleep"</string> 
-
-    <!-- Battery Bar -->
-    <string name="cat_battery_bar">Battery bar</string>
-    <string name="pref_battery_bar">Battery bar</string>
-    <string name="pref_battery_bar_color">Battery bar color</string>
-    <string name="pref_battery_bar_style_title">Battery bar style</string>
-    <string name="pref_battery_bar_thickness_title">Battery bar thickness</string>
-    <string name="pref_battery_bar_animate_title">Charging animation</string>
-    <string name="pref_battery_bar_animate_summary">The charging animation may result in a poor user experience. Enable at your own discretion.</string>
-    <string name="pref_regular">Normal</string>
-    <string name="pref_center_mirror">Center-mirrored</string>
-
-    <!-- Color Picker -->
-    <string name="dialog_color_picker">Color Picker</string>
-    <string name="press_color_to_apply">Press on Color to apply</string>
-    <string name="arrow_right">-</string>
-    <string name="arrow_down">|</string>
-    <string name="hex">Hex:</string>
-    <string name="hex_hint">#FF000000</string>
-    <string name="set">Set</string>
-    <string name="ics_color">Holo</string>
-
-    <!-- Performance : Disable bootanimation -->
-    <string name="pref_disable_boot_animation_title">Disable boot animation</string>
-    <string name="pref_disable_boot_animation_summary">Don\'t show boot animation for faster boot</string>
-
-    <!-- Status bar -->
-    <string name="status_bar_title">Status bar</string>
-    <string name="status_bar_style_title">Style</string>
-
-    <!-- Status bar | Clock -->
-    <string name="status_bar_clock">Clock and date</string>
-    <string name="status_bar_clock_title">Clock and date style</string>
-    <string name="clock_title_enable">Alignment</string>
-    <string name="clock_enabled">Enabled</string>
-    <string name="clock_disabled">Disabled</string>
-    <string name="clock_color_title">Color</string>
-    <string name="status_bar_clock_style_reset">Reset color</string>
-    <string name="status_bar_show_clock_title">Show clock and date</string>
-    <string name="status_bar_am_pm_title">AM/PM</string>
-    <string name="status_bar_am_pm_info">24-hour clock is enabled</string>
-    <string name="enable_clock_weekday">Day of the week</string>
-    <string name="enable_clock_weekday_summary">Abbreviated day of the week before the time</string>
-    <string name="right_clock">Right clock</string>
-    <string name="center_clock">Center clock</string>
-    <string name="dont_show">Don\'t show</string>
-    <string name="clock_date_display">Date</string>
-    <string name="clock_date_display_summary">Display custom date before the clock</string>
-    <string name="clock_date_style">Date style</string>
-    <string name="clock_date_format">Date format</string>
-    <string name="clock_date_string_edittext_title">Must be in DateFormat eg. MM/dd/yy</string>
-    <string name="clock_date_string_edittext_summary">Enter string</string>
-    <string name="am_pm_clock_normal">Normal font size</string>
-    <string name="am_pm_clock_small">Small font size</string>
-    <string name="am_pm_clock_none">Don\'t show</string>
-    <string name="clock_date_display_none">Don\'t show</string>
-    <string name="clock_date_display_small">Small font size</string>
-    <string name="clock_date_display_normal">Normal font size</string>
-    <string name="clock_date_style_normal">Normal</string>
-    <string name="clock_date_style_lowercase">Lowercase</string>
-    <string name="clock_date_style_uppercase">Uppercase</string>
-    <string name="clock_date_format_custom">Custom java format</string>
-    <string name="status_bar_clock_style_reset_message">Reset clock color?</string>
-    <string name="color_default">Default color</string>
-
-    <!-- General strings -->
-    <string name="ok">OK</string>
-    <string name="reset">Reset</string>
-    <string name="attention">Attention</string>
-    <string name="enabled">Enabled</string>
-    <string name="default_string">Default</string>
-    <string name="additional_options_title">Additional options</string>
-    <string name="reset_message">Reset all entries to default?</string>
-    <string name="style_title">Style</string>
-    <string name="other_settings">Other Settings</string>
-
-    <!-- Launcher settings  -->
-    <string name="launcher_settings_title">Launcher</string>
-
     <!-- Whether to display IME switcher notifcation -->
     <string name="ime_switcher_notify">Selector notification</string>
     <string name="ime_switcher_notify_summary">Display input method selector notification</string>
@@ -1175,5 +1048,4 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <!-- EdgeGesture service -->
     <string name="edge_gesture_service_title">Block gesture touch events</string>
     <string name="edge_gesture_service_summary">Don\'t send touch events for navigation and status bar gestures to apps</string>
-
 </resources>
