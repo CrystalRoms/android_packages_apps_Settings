@@ -177,18 +177,30 @@ public class InputMethodAndLanguageSettings extends SettingsPreferenceFragment
         mIm = (InputManager)getActivity().getSystemService(Context.INPUT_SERVICE);
         updateInputDevices();
 
+        PreferenceCategory pointerSettingsCategory = (PreferenceCategory)
+                        findPreference(KEY_POINTER_SETTINGS_CATEGORY);
         mStylusGestures = (PreferenceScreen) findPreference(KEY_STYLUS_GESTURES);
         mStylusIconEnabled = (CheckBoxPreference) findPreference(KEY_STYLUS_ICON_ENABLED);
-        // remove stylus preference for non stylus devices
-        if (!getResources().getBoolean(com.android.internal.R.bool.config_stylusGestures)) {
-            PreferenceCategory pointerSettingsCategory = (PreferenceCategory)
-                    findPreference(KEY_POINTER_SETTINGS_CATEGORY);
-            if (pointerSettingsCategory != null) {
+
+        if (pointerSettingsCategory != null) {
+            // remove stylus preference for non stylus devices
+            if (!getResources().getBoolean(com.android.internal.R.bool.config_stylusGestures)) {
                 pointerSettingsCategory.removePreference(mStylusGestures);
                 pointerSettingsCategory.removePreference(mStylusIconEnabled);
-                Utils.updatePreferenceToSpecificActivityFromMetaDataOrRemove(getActivity(),
-                        pointerSettingsCategory, KEY_TRACKPAD_SETTINGS);
             }
+            Utils.updatePreferenceToSpecificActivityFromMetaDataOrRemove(getActivity(),
+                            pointerSettingsCategory, KEY_TRACKPAD_SETTINGS);
+            if (pointerSettingsCategory.getPreferenceCount() == 0) {
+                getPreferenceScreen().removePreference(pointerSettingsCategory);
+            }
+        }
+
+        // Enable or disable mStatusBarImeSwitcher based on boolean: config_show_cmIMESwitcher
+        boolean showCmImeSwitcher = getResources().getBoolean(
+                com.android.internal.R.bool.config_show_cmIMESwitcher);
+        if (!showCmImeSwitcher) {
+            getPreferenceScreen().removePreference(
+                    findPreference(Settings.System.STATUS_BAR_IME_SWITCHER));
         }
 
         //Stylus Icon Options=
