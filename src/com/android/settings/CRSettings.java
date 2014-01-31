@@ -22,6 +22,7 @@ import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.app.AlertDialog;
+import android.app.ActivityManager;
 import android.app.ActivityManagerNative;
 import android.content.Context;
 import android.content.res.Configuration;

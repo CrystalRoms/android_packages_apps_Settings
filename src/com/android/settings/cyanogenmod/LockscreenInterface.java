@@ -65,8 +65,6 @@ public class LockscreenInterface extends SettingsPreferenceFragment implements
         mLockUtils = mChooseLockSettingsHelper.utils();
         mDPM = (DevicePolicyManager) getSystemService(Context.DEVICE_POLICY_SERVICE);
 
-
-        addPreferencesFromResource(R.xml.lockscreen_interface_settings);
         // Find categories
         PreferenceCategory generalCategory = (PreferenceCategory)
                 findPreference(LOCKSCREEN_GENERAL_CATEGORY);
@@ -77,49 +75,6 @@ public class LockscreenInterface extends SettingsPreferenceFragment implements
         mEnableKeyguardWidgets = (CheckBoxPreference) findPreference(KEY_ENABLE_WIDGETS);
         mEnableCameraWidget = (CheckBoxPreference) findPreference(KEY_ENABLE_CAMERA);
 
-        PreferenceScreen lockscreenButtons = (PreferenceScreen) findPreference(KEY_LOCKSCREEN_BUTTONS);
-            if (!hasButtons()) {
-                generalCategory.removePreference(lockscreenButtons);
-            }
-        // Remove lockscreen button actions if device doesn't have hardware keys
-        if (!hasButtons()) {
-            generalCategory.removePreference(findPreference(KEY_LOCKSCREEN_BUTTONS));
-        }
-
-        // Remove/disable custom widgets based on device RAM and policy
-        if (ActivityManager.isLowRamDeviceStatic()) {
-            // Widgets take a lot of RAM, so disable them on low-memory devices
-            widgetsCategory.removePreference(findPreference(KEY_ENABLE_WIDGETS));
-            mEnableKeyguardWidgets = null;
-        } else {
-            checkDisabledByPolicy(mEnableKeyguardWidgets,
-                    DevicePolicyManager.KEYGUARD_DISABLE_WIDGETS_ALL);
-        }
-
-        // This applies to all users
-        // Enable or disable keyguard widget checkbox based on DPM state
-        mEnableKeyguardWidgets = (CheckBoxPreference) findPreference(KEY_ENABLE_WIDGETS);
-        if (mEnableKeyguardWidgets != null) {
-            if (ActivityManager.isLowRamDeviceStatic()) {
-                    /*|| mLockPatternUtils.isLockScreenDisabled()) {*/
-                // Widgets take a lot of RAM, so disable them on low-memory devices
-                if (widgetsCategory != null) {
-                    widgetsCategory.removePreference(findPreference(KEY_ENABLE_WIDGETS));
-                    if (Utils.isPhone(getActivity())) {
-                        widgetsCategory.removePreference(
-                                findPreference(Settings.System.LOCKSCREEN_MAXIMIZE_WIDGETS));
-                    }
-                    mEnableKeyguardWidgets = null;
-                }
-            } else {
-                final boolean disabled = (0 != (mDPM.getKeyguardDisabledFeatures(null)
-                        & DevicePolicyManager.KEYGUARD_DISABLE_WIDGETS_ALL));
-                if (disabled) {
-                    mEnableKeyguardWidgets.setSummary(
-                            R.string.security_enable_widgets_disabled_summary);
-                }
-                mEnableKeyguardWidgets.setEnabled(!disabled);
-            }
         mBatteryStatus = (ListPreference) findPreference(KEY_BATTERY_STATUS);
         if (mBatteryStatus != null) {
             mBatteryStatus.setOnPreferenceChangeListener(this);
@@ -147,15 +102,14 @@ public class LockscreenInterface extends SettingsPreferenceFragment implements
         // Remove cLock settings item if not installed
         if (!isPackageInstalled("com.cyanogenmod.lockclock")) {
             widgetsCategory.removePreference(findPreference(KEY_LOCK_CLOCK));
-			}
+        }
 
         // Remove maximize widgets on tablets
         if (!Utils.isPhone(getActivity())) {
             widgetsCategory.removePreference(
                     findPreference(Settings.System.LOCKSCREEN_MAXIMIZE_WIDGETS));
-			}
-		}
-	}
+        }
+    }
 
     @Override
     public void onResume() {
@@ -219,14 +173,6 @@ public class LockscreenInterface extends SettingsPreferenceFragment implements
     }
 
     /**
-     * Checks if the device has hardware buttons.
-     * @return has Buttons
-     */
-    public boolean hasButtons() {
-        return !getResources().getBoolean(com.android.internal.R.bool.config_showNavigationBar);
-    }
-
-    /**
      * Checks if a specific policy is disabled by a device administrator, and disables the
      * provided preference if so.
      * @param preference Preference
@@ -252,3 +198,4 @@ public class LockscreenInterface extends SettingsPreferenceFragment implements
     }
 
 }
+

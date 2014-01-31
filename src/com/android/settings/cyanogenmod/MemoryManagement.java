@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012-2013 The CyanogenMod Project
+ * Copyright (C) 2012 The CyanogenMod Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,23 +32,12 @@ public class MemoryManagement extends SettingsPreferenceFragment {
 
     public static final String KSM_RUN_FILE = "/sys/kernel/mm/ksm/run";
     public static final String KSM_PREF = "pref_ksm";
-    public static final String KSM_PREF_DISABLED = "0";
-    public static final String KSM_PREF_ENABLED = "1";
-
-    private static final String PURGEABLE_ASSETS_PREF = "pref_purgeable_assets";
-    private static final String PURGEABLE_ASSETS_PERSIST_PROP = "persist.sys.purgeable_assets";
-    private static final String PURGEABLE_ASSETS_DEFAULT = "0";
-
-    private static final String LOW_RAM_PREF = "pref_low_ram";
-    private static final String LOW_RAM_PERSIST_PROP = "persist.config.low_ram";
-    private static final String LOW_RAM_DEFAULT_PROP = "ro.config.low_ram";
 
     private static final String PURGEABLE_ASSETS_PREF = "pref_purgeable_assets";
     private static final String PURGEABLE_ASSETS_PERSIST_PROP = "persist.sys.purgeable_assets";
 
     private CheckBoxPreference mPurgeableAssetsPref;
     private CheckBoxPreference mKSMPref;
-    private CheckBoxPreference mLowRamPref;
 
 
     @Override
@@ -61,7 +50,6 @@ public class MemoryManagement extends SettingsPreferenceFragment {
 
         mPurgeableAssetsPref = (CheckBoxPreference) prefSet.findPreference(PURGEABLE_ASSETS_PREF);
         mKSMPref = (CheckBoxPreference) prefSet.findPreference(KSM_PREF);
-        mLowRamPref = (CheckBoxPreference) prefSet.findPreference(LOW_RAM_PREF);
 
         if (Utils.fileExists(KSM_RUN_FILE)) {
             mKSMPref.setChecked("1".equals(Utils.fileReadOneLine(KSM_RUN_FILE)));
@@ -71,14 +59,6 @@ public class MemoryManagement extends SettingsPreferenceFragment {
 
         String purgeableAssets = SystemProperties.get(PURGEABLE_ASSETS_PERSIST_PROP, "0");
         mPurgeableAssetsPref.setChecked("1".equals(purgeableAssets));
-
-        String lowRamDefault = SystemProperties.get(LOW_RAM_DEFAULT_PROP);
-        if (lowRamDefault != null) {
-            String lowRam = SystemProperties.get(LOW_RAM_PERSIST_PROP, lowRamDefault);
-            mLowRamPref.setChecked("true".equals(lowRam));
-        } else {
-            prefSet.removePreference(mLowRamPref);
-        }
     }
 
     @Override
@@ -92,16 +72,7 @@ public class MemoryManagement extends SettingsPreferenceFragment {
             Utils.fileWriteOneLine(KSM_RUN_FILE, mKSMPref.isChecked() ? "1" : "0");
             return true;
         }
-
-        if (preference == mLowRamPref) {
-            SystemProperties.set(LOW_RAM_PERSIST_PROP, mLowRamPref.isChecked() ? "true" : "false");
-            return true;
-        }
-
-        return false;
-    }
-
-    public boolean onPreferenceChange(Preference preference, Object newValue) {
         return false;
     }
 }
+
