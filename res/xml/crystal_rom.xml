@@ -40,6 +40,12 @@
         android:title="@string/pref_force_highend_gfx_title"
         android:summary="@string/pref_force_highend_gfx_summary" />
 
+    <com.android.settings.cyanogenmod.SystemSettingCheckBoxPreference
+        android:title="@string/lockscreen_see_through"
+        android:summary="@string/lockscreen_see_through_summary"
+        android:key="lockscreen_see_through"
+        />
+
     </PreferenceCategory>
 
 </PreferenceScreen>
